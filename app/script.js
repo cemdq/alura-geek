@@ -5,14 +5,18 @@ let inputs = document.querySelectorAll(".form-control")
 window.addEventListener("load", carregarProdutos)
 
 async function carregarProdutos() {
-    const response = await fetch("http://localhost:3000/produtos/")
+    // Contornando limitação do GitHub Pages
+    const response = await fetch("https://cemdq.github.io/alura-geek/db.json")
+    
+    //const response = await fetch("http://localhost:3000/produtos/")
     const produtos = await response.json()
 
-    mostrarProdutos(produtos)
+    //mostrarProdutos(produtos)
+    mostrarProdutos(produtos.produtos)
 }
 
 function mostrarProdutos(produtos) {
-    produtos.forEach(produto => {
+    produtos.forEach((produto) =>  {
         galeria.innerHTML += `
         <div class="card">
             <img src="${produto.img}" height="200" style="object-fit: cover;" class="card-img-top" alt="${produto.nome}">
